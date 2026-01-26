@@ -9,7 +9,7 @@
 #import <React/RCTViewManager.h>
 
 #ifdef RCT_NEW_ARCH_ENABLED
-#import "RNDatePickerSpecs.h"
+#import <RNDatePickerSpecs/RNDatePickerSpecs.h>
 #endif
 
 @interface RNDatePickerManager : RCTViewManager
