@@ -251,5 +251,3 @@ RCT_EXPORT_METHOD(closePicker)
 #endif
 
 @end
-
-
