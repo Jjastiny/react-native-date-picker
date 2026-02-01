@@ -1,6 +1,7 @@
 package com.henninghall.date_picker;
 
 
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -26,8 +27,8 @@ public class DatePickerModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void openPicker(ReadableMap props) {
-        module.openPicker(props);
+    public void openPicker(ReadableMap props, Callback onConfirm, Callback onCancel) {
+        module.openPicker(props, onConfirm, onCancel);
     }
     
     @ReactMethod

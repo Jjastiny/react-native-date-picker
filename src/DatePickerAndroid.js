@@ -27,7 +27,7 @@ export const DatePickerAndroid = React.memo((props) => {
       if (props.onDateChange) props.onDateChange(jsDate)
       if (props.onDateStringChange) props.onDateStringChange(dateString)
     },
-    [props, thisId]
+    [props, thisId],
   )
 
   const onSpinnerStateChanged = useCallback(
@@ -41,7 +41,7 @@ export const DatePickerAndroid = React.memo((props) => {
       if (newArch && id !== thisId) return
       props.onStateChange && props.onStateChange(spinnerState)
     },
-    [props, thisId]
+    [props, thisId],
   )
 
   useEffect(() => {
@@ -67,9 +67,10 @@ export const DatePickerAndroid = React.memo((props) => {
     onStateChange: onSpinnerStateChanged,
   }
 
-  useModal({ props: modifiedProps, id: thisId })
-
-  if (props.modal) return null
+  if (props.modal) {
+    useModal({ props: modifiedProps, id: thisId })
+    return null
+  }
 
   return <NativeComponent {...modifiedProps} />
 })

@@ -13,7 +13,7 @@ export const DatePickerIOS = (props) => {
       const nativeTimeStamp = event.nativeEvent.timestamp
       if (props.onDateChange) props.onDateChange(new Date(nativeTimeStamp))
     },
-    [props]
+    [props],
   )
 
   /** @type {NativeProps}  */
@@ -23,14 +23,19 @@ export const DatePickerIOS = (props) => {
     style: [styles.datePickerIOS, props.style],
     date: props.date ? props.date.toISOString() : undefined,
     locale: props.locale ? props.locale : undefined,
-    maximumDate: props.maximumDate ? props.maximumDate.toISOString() : undefined,
-    minimumDate: props.minimumDate ? props.minimumDate.toISOString() : undefined,
+    maximumDate: props.maximumDate
+      ? props.maximumDate.toISOString()
+      : undefined,
+    minimumDate: props.minimumDate
+      ? props.minimumDate.toISOString()
+      : undefined,
     theme: props.theme ? props.theme : 'auto',
   }
 
-  useModal({ props: modifiedProps, id: undefined })
-
-  if (props.modal) return null
+  if (props.modal) {
+    useModal({ props: modifiedProps, id: undefined })
+    return null
+  }
 
   return (
     <NativeComponent

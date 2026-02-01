@@ -60,7 +60,7 @@ export const useModal = ({ props, id }) => {
       })
       if (props.onConfirm) props.onConfirm(new Date(date))
     },
-    [id, props]
+    [id, props],
   )
 
   const onCancel = useCallback(
@@ -69,19 +69,14 @@ export const useModal = ({ props, id }) => {
       closing.current = true
       if (props.onCancel) props.onCancel()
     },
-    [id, props]
+    [id, props],
   )
 
   // open
   useEffect(() => {
     if (shouldOpenModal(props, previousProps)) {
       closing.current = false
-      const params = Platform.select({
-        android: [props],
-        ios: [props, onConfirm, onCancel],
-      })
-      if (!params) throw Error('Unsupported platform')
-      NativeModule.openPicker(...params)
+      NativeModule.openPicker(props, onConfirm, onCancel)
     }
   }, [onCancel, onConfirm, previousProps, props])
 
